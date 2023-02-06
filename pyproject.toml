@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "wfm-schedule-updater"
+version = "0.1.0"
+description = ""
+authors = ["Logan Dang <logandang100@gmail.com>"]
+readme = "README.md"
+packages = [{include = "wfm_schedule_updater"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selenium = "^4.8.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
