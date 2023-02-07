@@ -9,6 +9,9 @@ packages = [{include = "wfm_schedule_updater"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 selenium = "^4.8.0"
+pytz = "^2022.7.1"
+python-dotenv = "^0.21.1"
+gcsa = "^2.0.1"
 
 
 [build-system]
