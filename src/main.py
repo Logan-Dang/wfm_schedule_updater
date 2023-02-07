@@ -73,7 +73,8 @@ while True:
                 .text
             )
             [start_time, end_time] = parse_times(times)
-            shifts.append(Shift(date, start_time, end_time))
+            shift = Shift(date, start_time, end_time)
+            shifts.append(shift)
     if element_is_present((By.CLASS_NAME, "index_disabled_27N4l")):
         break
     driver.find_elements(By.CLASS_NAME, "index_caret_E-6uh")[1].click()
@@ -87,15 +88,16 @@ i = 0
 
 # Ensure everything matches for now
 for event in calendar.get_events(time_min=datetime.now(), query="Whole Foods"):
-    assert event.start.isoformat() == shifts[i].start_time, "Lists are not equal"
+    assert event.start == shifts[i].start_time, "Lists are not equal"
     i += 1
 
 # Creating events
 events_created = 0
 while i < len(shifts):
-    event = Event("Whole Foods", shifts[i].start_time, shifts[i].end_time)
+    event = Event("Whole Foods", start=shifts[i].start_time, end=shifts[i].end_time)
     calendar.add_event(event)
     print(f"Event created: {event}")
     events_created += 1
+    i += 1
 
 print(f"Total events created: {events_created}")

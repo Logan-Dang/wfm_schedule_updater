@@ -8,7 +8,7 @@ class Shift:
         self.end_time = Shift.parse_time(date_string, end_time)
 
     @staticmethod
-    def parse_time(date_string: str, time_string: str) -> str:
+    def parse_time(date_string: str, time_string: str) -> datetime:
         today = datetime.now()
         date: datetime = datetime.strptime(date_string, "%a, %b %d")
         time: datetime = datetime.strptime(time_string, "%I:%M %p")
@@ -16,7 +16,7 @@ class Shift:
         date_time = datetime.combine(date, time).replace(
             year=today.year if today.month != 1 else today.year + 1
         )
-        return pytz.timezone("US/Pacific").localize(date_time).isoformat()
+        return pytz.timezone("US/Pacific").localize(date_time)
 
     def __repr__(self) -> str:
         return f"{self.start_time} to {self.end_time}"
